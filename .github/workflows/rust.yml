@@ -48,7 +48,7 @@ jobs:
       - name: Build ${{ matrix.platform.target }}
         timeout-minutes: 120
         run: |
-          cargo build --release --target ${{ matrix.platform.target }}  -verbose
+          cargo build --release --target ${{ matrix.platform.target }} --verbose
       - name: Upload Github Assets
         uses: softprops/action-gh-release@v2
         env:
@@ -83,5 +83,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           files: build/release/zerofclaw
-          prerelease: ${{ contains(github.ref_name, '-') }}
           tag_name: ${{ inputs.tag || github.ref_name }}
