@@ -25,24 +25,13 @@ jobs:
           - target: x86_64-unknown-linux-gnu
             toolchain: stable
     steps:
-      - name: Free Disk Space (Ubuntu)
-        uses: jlumbroso/free-disk-space@main
-
-      - name: Install LLVM and Clang
-        run: sudo apt update && sudo apt install -y clang
-
       - uses: actions/checkout@v6
-
       - name: Install Rust
         run: |
           rustup set profile minimal
           rustup toolchain install ${{ matrix.platform.toolchain }}
           rustup default ${{ matrix.platform.toolchain }}
           rustup override set ${{ matrix.platform.toolchain }}
-
-      - name: Install cross
-        run: cargo install cross --git https://github.com/cross-rs/cross
-
       - name: Build ${{ matrix.platform.target }}
         timeout-minutes: 120
         run: |
