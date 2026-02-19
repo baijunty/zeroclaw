@@ -78,8 +78,7 @@ jobs:
 
       - name: Build release
         run: |
-          pwsh ./build/build-host-release.ps1 "full winservice"
-
+            cargo build --release --verbose  
       - name: Upload Github Assets
         uses: softprops/action-gh-release@v2
         env:
