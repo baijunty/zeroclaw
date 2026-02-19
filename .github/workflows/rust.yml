@@ -52,16 +52,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          files: build/release/zeroclaw
+          files: target/release/zeroclaw
           tag_name: ${{ inputs.tag || github.ref_name }}
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v6.0.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          name: ${{ inputs.tag || github.ref_name }}
-          path: build/release/zeroclaw
-
           
           
 
